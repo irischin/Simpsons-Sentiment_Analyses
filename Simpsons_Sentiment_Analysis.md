@@ -36,9 +36,14 @@ sentence.tokens<-Simpsons.corpus %>%
 
 I have then subsequently written a loop in which ***each sentence*** is first tokenized into unigrams. The unigrams were then matched to a list of negation words to check whether it contains a negation word.
 
-**If the group of unigrams contained any negation words:** - unigrams were first assigned sentiment scores via the `AFINN` lexicon [Finn Årup Nielsen](http://www2.imm.dtu.dk/pubdb/views/publication_details.php?id=6010). Here, we are using a dictionary-based approach, where the unigrams of interest are checked through a dictionary that already contains words that have been assigned sentiment scores. `AFINN` in particular contains a dictionary of words that are scored between -5 (negative sentiment) to 5 (positive sentiment). To access the complete dictionary, simply call `get_sentiments("afinn")`. - then, the sentiment score of a word that was preceded by a negation word was reversed (e.g., "bright", which has a sentiment score of 1 was now turned to -1) - to avoid inflating the sentiment score for the sentence to be too negative, the sentiment score of each negation word was assigned as NA - occurrences of consecutive no's (e.g., no no no) are special cases since typically the presence of a negation word does not involve the change of direction of the next word's sentiment (e.g., "no" preceding "no" does not mean the second "no" should now be reversed from a negative sentiment to a positive sentiment). Thus, cases with consecutive "no's" did not have their sentiments reversed
+**If the group of unigrams contained any negation words:** 
+- unigrams were first assigned sentiment scores via the `AFINN` lexicon [Finn Årup Nielsen](http://www2.imm.dtu.dk/pubdb/views/publication_details.php?id=6010). Here, we are using a dictionary-based approach, where the unigrams of interest are checked through a dictionary that already contains words that have been assigned sentiment scores. `AFINN` in particular contains a dictionary of words that are scored between -5 (negative sentiment) to 5 (positive sentiment). To access the complete dictionary, simply call `get_sentiments("afinn")`. 
+- then, the sentiment score of a word that was preceded by a negation word was reversed (e.g., "bright", which has a sentiment score of 1 was now turned to -1) 
+- to avoid inflating the sentiment score for the sentence to be too negative, the sentiment score of each negation word was assigned as NA 
+- occurrences of consecutive no's (e.g., no no no) are special cases since typically the presence of a negation word does not involve the change of direction of the next word's sentiment (e.g., "no" preceding "no" does not mean the second "no" should now be reversed from a negative sentiment to a positive sentiment). Thus, cases with consecutive "no's" did not have their sentiments reversed
 
-**If the group of unigrams *did not* contain any negation words:** - the unigrams were simply assigned the sentiment scores using the `AFINN` dictionary.
+**If the group of unigrams *did not* contain any negation words:** 
+- the unigrams were simply assigned the sentiment scores using the `AFINN` dictionary.
 
 After these steps, the sentiment score for each sentence was computed by simply adding the sentiment scores of each word
 
@@ -95,7 +100,6 @@ for (sentence.num in 1:length(sentence.tokens$sentence)) {
     line$utterance.afinn<-sum(afinn.scores$score, na.rm=T)
     corp.sentiment<-rbind(corp.sentiment, line)
   }
-  print(sentence.num)
 }
 ```
 
