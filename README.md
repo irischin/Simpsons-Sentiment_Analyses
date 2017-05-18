@@ -12,3 +12,7 @@ In this directory you will find:
 |:---------------------------------|:------------------------------------------------------------------------------------|
 | Simpsons\_Sentiment\_Analysis.md | Describes and generates the results of the two sentiment analyses I described above |
 | negation\_words.txt              | Contains the list of negation words that was used in my analyses                    |
+
+For more detail write-ups of the analyses, please visit the following entries on my blog:
+* [*Has the sentiment of the Simpsons changed over time?*](https://irischinresearch.wordpress.com/2017/03/01/has-the-sentiment-of-the-simpsons-changed-over-time/)
+* [*Evaluating Homer’s “short-temper”*](https://irischinresearch.wordpress.com/2017/03/05/evaluating-homers-short-temper/)
